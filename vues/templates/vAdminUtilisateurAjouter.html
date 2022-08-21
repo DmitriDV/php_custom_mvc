@@ -1,0 +1,30 @@
+<section>
+    <h1>{{ titre|upper }}</h1>
+       
+    <form method="POST" action="admin?entite=utilisateur&action=a">
+    
+        <label>Nom</label>
+        <input name="utilisateur_nom" value="">
+        <span>&nbsp;{{ oUtilisateur.erreurs.utilisateur_nom }}</span>
+
+        <label>Prénom</label>
+        <input name="utilisateur_prenom" value="">
+        <span>&nbsp;{{ oUtilisateur.erreurs.utilisateur_prenom }}</span>
+
+        <label>Courriel</label>
+        <input name="utilisateur_courriel" value="">
+        <span>&nbsp;{{ oUtilisateur.erreurs.utilisateur_courriel }}</span>
+
+        <label>Profil</label>
+        <select name="utilisateur_profil">
+            <option value="{{ constant('Utilisateur::PROFIL_ADMINISTRATEUR') }}"  {{ oUtilisateur.utilisateur_profil == constant('Utilisateur::PROFIL_ADMINISTRATEUR')   ? 'selected' : '' }}>Administrateur</option>
+            <option value="{{ constant('Utilisateur::PROFIL_EDITEUR') }}"         {{ oUtilisateur.utilisateur_profil == constant('Utilisateur::PROFIL_EDITEUR')   ? 'selected' : '' }}>Editeur</option>
+            <option value="{{ constant('Utilisateur::PROFIL_UTILISATEUR') }}"     {{ oUtilisateur.utilisateur_profil == constant('Utilisateur::PROFIL_UTILISATEUR') ? 'selected' : '' }}>Utilisateur</option>
+        </select>
+        <span>&nbsp;{{ oUtilisateur.erreurs.utilisateur_profil }}</span>
+        
+        <input type="submit" value="Envoyer">
+        
+    </form>
+  
+</section>

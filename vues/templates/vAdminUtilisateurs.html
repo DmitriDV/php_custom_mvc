@@ -1,0 +1,40 @@
+<!-- script pour modifier le contenu de la barre d'adresse (avec l'uri "admin?entite=film") qui devient en phase avec le contenu du template affiché -->
+<script>history.pushState({}, '', 'admin?entite=utilisateur')</script>
+
+
+{% if oAuthUtilisateur.utilisateur_profil == constant('Utilisateur::PROFIL_ADMINISTRATEUR') %}
+
+<section>
+    <h1>{{ titre|upper }}</h1>
+    <a href="admin?entite=utilisateur&action=a">Ajouter un utilisateur</a>
+    <p class="messageRetourAction {{ classRetour }}">{{ messageRetourAction }}&nbsp;</p>   
+    <div class="g utilisateurs">
+        <div class="t">Id</div>
+        <div class="t">Nom, Prénom</div>
+        <div class="t">Courriel</div>
+        <div class="t">Profil</div>
+        <div class="t">Actions</div>
+    {% for oUtilisateur in oUtilisateurs %}
+        <div class="l">
+        <div class="c dr">{{ oUtilisateur.utilisateur_id }}</div>
+        <div class="c   ">{{ oUtilisateur.utilisateur_nom }}, {{ oUtilisateur.utilisateur_prenom }}</div>
+        <div class="c   ">{{ oUtilisateur.utilisateur_courriel }}</div>
+        <div class="c   ">
+            {% if     oUtilisateur.utilisateur_profil is constant('Utilisateur::PROFIL_ADMINISTRATEUR') %} Administrateur
+            {% elseif oUtilisateur.utilisateur_profil is constant('Utilisateur::PROFIL_EDITEUR') %}   Editeur
+            {% elseif oUtilisateur.utilisateur_profil is constant('Utilisateur::PROFIL_UTILISATEUR') %}   Utilisateur
+            {% endif %}
+        </div>
+        <div class="c mi">
+            <a href="admin?entite=utilisateur&action=m&utilisateur_id={{ oUtilisateur.utilisateur_id }}">modifier</a>
+            <span class="confirmerS" data-href="admin?entite=utilisateur&action=s&utilisateur_id={{ oUtilisateur.utilisateur_id }}">supprimer</span>
+            <span class="confirmerG" data-href="admin?entite=utilisateur&action=generer_mdp&utilisateur_id={{ oUtilisateur.utilisateur_id }}">générer mdp</span>
+        </div>
+        </div>
+    {% endfor %} 
+    </div>
+</section>
+{{ include("modaleSuppression.html") }}
+{{ include("modaleGeneration.html") }} 
+
+{% endif %}

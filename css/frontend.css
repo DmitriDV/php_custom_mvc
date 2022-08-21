@@ -1,0 +1,137 @@
+html, body, h1, h2, p, ul, li {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
+body {
+    width: 90%;
+    min-width: 960px;
+    margin: 0 auto;
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: #2E292E;
+    color: #fff;
+}
+#erreur p, #erreur a {
+    display: block;
+    text-align: center;
+    line-height: 2;
+    color: #fff;
+}
+a {
+    text-decoration: none;
+}
+ul {
+    list-style: none; 
+}
+header {
+    display: flex;
+}
+#logo {
+    padding: 0 20px;
+    line-height: 68px;
+    font-size: 48px;
+    font-family: 'Sansita Swashed', cursive;
+    color: #f9bc64;
+}
+header ul {
+    display: flex;
+}
+header ul a {
+    margin: 20px 0 0 30px;
+    color: #98cece;
+    display:  inline-block;
+}
+main > section > h1 {
+    margin: 40px 0;
+    text-align: center;
+    font-size: 48px;
+    color: #f9bc64;
+}
+main > section > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+section > div > div {
+    padding: 0 20px 40px 20px;
+}
+section > div img {
+    min-width: 200px;
+    max-width: 300px;
+    padding: 0 20px;
+}
+p.legende {
+    margin: 5px 0;
+    text-align: center;
+}
+div.info {
+     width: 450px;
+}
+div.info p {
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+div.info li {
+    line-height: 1.5; 
+}
+div.info li span {
+    display: inline-block;
+    padding-top: 10px; 
+}
+div.info li span:first-of-type {
+    width: 100px;
+    text-align: right;
+}
+div.info li span:last-of-type {
+    padding-left: 10px;
+    vertical-align: top;
+}
+div.ba {
+    width: 384px;
+}
+div.ba video {
+    margin-bottom: 30px;
+    width: 100%;
+}
+div.ba h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 36px;
+    font-weight:normal;
+    color: #d65b5a;
+}
+#horaires {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    background-color:#3E393E;
+}
+#horaires .jour {
+    box-sizing: border-box;
+    padding: 10px 20px 10px 10px;
+    line-height: 24px;
+    width: 130px;
+    color:#f9bc64; 
+}
+#horaires .heures {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    row-gap: 8px; 
+    box-sizing: border-box;
+    padding: 10px 10px 10px 0;
+    width: calc(100% - 130px);
+}
+#horaires .heures div {
+    margin-left: 8px;
+    padding: 0 5px;
+    line-height: 24px;
+    color: #f9bc64;
+    background-color: #2E292E;
+}
+
+
+

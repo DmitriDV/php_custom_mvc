@@ -1,0 +1,181 @@
+/* reset CSS
+========= */
+
+html, body, h1, p, ul, li {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
+/* gabarit 
+======= */
+
+#page, button, dialog, input, select, textarea {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+#page {
+    display: grid;
+    grid-template-columns: min-content auto;
+    color: black;
+    background: white;
+}
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+a:hover {
+    color:rgb(0, 73, 207);
+}
+.dr {
+    -align: right;
+}
+.mi {
+    text-align: center;
+}
+.erreur {
+    color: brown;
+}
+.fait {
+    color: mediumseagreen; 
+}
+header {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 20px;
+    background-color: #eee;
+}
+header p {
+    margin-bottom: 30px;
+}
+header p a {
+    display: block;
+    margin-top: 8px;
+}
+header ul {
+    list-style: none;
+}
+header ul li a {
+    display: block;
+    line-height: 32px;
+    overflow: hidden;
+    color:cornflowerblue;
+}
+header ul li hr {
+    border: 0;
+    height: 1px;
+    background-color:cornflowerblue;
+}
+
+/* contenu spécifique de la page (main)
+==================================== */
+
+main {
+/* min-width: 1024px; */
+    box-sizing: border-box;
+    padding: 20px 40px;
+}
+main h1 {
+    font-size: 24px;  
+}
+main section > a {
+    display: inline-block;
+    margin: 16px 0;
+}
+.messageRetourAction {
+    margin-bottom: 10px;
+}
+
+/* tableaux des listes (grid layout)
+    ================================= */
+
+.g {
+    display: grid;
+    grid-gap: 3px;
+}
+.g.films {
+    grid-template-columns: repeat(10, max-content);
+}
+.g.utilisateurs {
+    grid-template-columns: repeat(5, max-content);
+}
+.l {
+    display: contents;
+}
+.l:nth-of-type(2n) .c {
+    background-color: #eee;
+}
+.l:nth-of-type(2n+1) .c {
+    background-color: #ddd;
+}
+.t {
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid cornflowerblue;
+}
+.t, .c {
+    box-sizing: border-box;
+    padding: 5px 20px;
+    line-height: 32px;
+    border-radius: 3px;
+}
+.c a, .c span  {
+    margin: 0 5px;
+}
+.c span {
+    color: cornflowerblue;
+    cursor: pointer;
+}
+.c span:hover {
+    color:rgb(0, 73, 207);
+}
+
+/* formulaires 
+    =========== */
+
+label, input, select, textarea, form img {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+label {
+    margin-top: 30px;
+}
+input, select, button, textarea, form img {
+    padding: 8px;
+    width: 400px;
+    font-size: 16px;
+}
+form span {
+    display: block;
+    color: brown;
+}
+input[type=submit] {
+    margin-top: 40px;
+}
+
+/* fenêtres modales 
+    ============== */
+
+#modaleSuppression, #modaleGeneration {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #777;
+}
+#modaleSuppression p, #modaleGeneration p {
+    padding: 10px 20px;
+    font-size: 24px;
+}
+#modaleSuppression .actions, #modaleGeneration .actions {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 10px;
+}
+#modaleSuppression button, #modaleGeneration button {
+    width: auto;
+    margin: 0 30px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+#modaleSuppression::backdrop, #modaleGeneration::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}

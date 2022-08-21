@@ -1,0 +1,18 @@
+<section>
+    <h1>{{ titre|upper }}</h1>
+    
+    <form method="POST" action="admin">
+
+        <br><span>&nbsp;{{ messageErreurConnexion }}</span>
+
+        <label>Courriel</label>
+        <input name="utilisateur_courriel" value="{{ oAuthUtilisateur.utilisateur_courriel }}">
+
+        <label>Mot de passe</label>
+        <input type="password" name="utilisateur_mdp" value="{{ oAuthUtilisateur.utilisateur_mdp }}">
+    
+        <input type="submit" value="Envoyer">
+
+    </form>
+
+</section>

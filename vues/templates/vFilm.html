@@ -1,0 +1,75 @@
+<!-- début template film --> 
+<section>
+    <h1>{{ oFilm.film_titre }}</h1>
+    <div>
+        <img src="{{ oFilm.film_affiche }}" alt="">
+        <div class="info">
+        <p>{{ oFilm.film_resume }}</p>
+        <hr>
+        <ul>
+            <li><span>Genre:</span><span>{{ oFilm.genre_nom }}</span></li>
+            <li><span>Année:</span><span>{{ oFilm.film_annee_sortie }}</span></li>
+            <li><span>Durée:</span><span>{{ oFilm.film_duree }} min</span></li>
+
+            <!-- liste des réalisateurs --> 
+            <li>
+            <span>Réalisation:</span>
+            <span>
+            {% for oRealisateur in oRealisateurs %}
+                {{ oRealisateur.realisateur_prenom }} {{ oRealisateur.realisateur_nom}}{% if not loop.last %},{% endif %} 
+            {% endfor %}
+            </span>
+            </li>
+
+            <!-- liste des pays --> 
+            <li>
+            <span>Pays:</span>
+            <span>
+            {% for oUnPays in oPays %}
+                {{ oUnPays.pays_nom }}{% if not loop.last %},{% endif %} 
+            {% endfor %}  
+            </span>
+            </li>
+
+            <!-- liste des acteurs --> 
+            <li>
+            <span>Interprètes:</span>
+            <span>
+            {% for oActeur in oActeurs %}
+                {{ oActeur.acteur_prenom  }} {{ oActeur.acteur_nom }}<br>
+            {% endfor %}
+            </span>
+            </li>
+        </ul>
+        </div>
+        <div class="ba">
+        {% if oFilm.film_bande_annonce != null %}        
+        <video src="{{ oFilm.film_bande_annonce }}" controls></video>
+        {% endif %}
+
+        <!-- horaires -->  
+        {% if oSeances %}
+        <section>
+            <h2>Horaires</h2>
+            <div id="horaires">
+            {% set jourRef = '' %}
+            {% for oSeance in oSeances %}
+            {% if jourRef != oSeance.seance_date %}
+                {% if jourRef != '' %}
+            </div>
+                {% endif %}
+            <div class="jour">{{ oSeance.getJourSemaine() }} {{ oSeance.seance_date[8:] }}</div>
+            <div class="heures">
+                {% set jourRef = oSeance.seance_date %}
+            {% endif %}
+                <div>{{ oSeance.seance_heure[:5] }}</div>
+            {% endfor %}
+            </div>           
+            </div>
+        </section>
+    
+        {% endif %}
+        </div>
+    </div>  
+</section>
+<!-- fin template film --> 

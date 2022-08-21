@@ -1,0 +1,11 @@
+<section>
+    <h1>{{ titre|upper }}</h1>
+    <div>
+    {% for oFilm in oFilms %}
+        <div>
+            <a href="film?film_id={{ oFilm.film_id }}"><img src="{{ oFilm.film_affiche }}" alt=""></a>
+            <p class="legende">{{ oFilm.genre_nom }} - {{ oFilm.film_annee_sortie }} - {{ oFilm.film_duree }} min</p>
+        </div>
+    {% endfor %}
+    </div>
+</section> 

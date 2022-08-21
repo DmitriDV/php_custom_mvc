@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="robots" content="noindex, nofollow">
+        <title>{{ titre }}</title>
+        <link rel="stylesheet" type="text/css" href="css/admin.css?v=1.1">
+    </head>
+
+{% if oAuthUtilisateur.utilisateur_profil == constant('Utilisateur::PROFIL_UTILISATEUR') %}
+{{ include("vErreur403.html") }} 
+{% else %}
+         <body>
+            <div id="page">
+                <header>
+                    <p>
+                        {{ oAuthUtilisateur.utilisateur_prenom }}  {{ oAuthUtilisateur.utilisateur_nom }}
+                        <a href="admin?entite=utilisateur&action=d">Déconnecter</a>
+                    </p>
+                    <nav>
+                        <ul>
+                            <li><hr><a href="admin">Films</a></li>
+                            <li><a href="admin?entite=genre">Genres</a></li>
+                            <li><a href="admin?entite=realisateur">Réalisateurs</a></li>
+                            <li><a href="admin?entite=acteur">Acteurs</a></li>
+                            <li><a href="admin?entite=pays">Pays</a></li>
+                            <li><a href="admin?entite=seance">Séances</a></li>
+                            <li><a href="admin?entite=salle">Salles</a></li>
+                        </ul>
+                    </nav>
+
+                    {% if oAuthUtilisateur.utilisateur_profil == constant('Utilisateur::PROFIL_ADMINISTRATEUR') %}
+                    <p><hr>
+                        <a href="admin?entite=utilisateur">Utilisateurs</a>
+                    </p>
+                    {% endif %}
+                </header>
+                <main>
+
+                {{ include(templateMain) }}
+
+                </main>
+            </div>
+        </body>
+{% endif %}
+
+</html>

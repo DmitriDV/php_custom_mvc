@@ -1,0 +1,49 @@
+<section>
+    <h1>{{ titre|upper }}</h1>
+    
+    <form method="POST" action="admin?entite=film&action=m&film_id={{  oFilm.film_id }}" enctype="multipart/form-data">
+
+        <label>Titre</label>
+        <input name="film_titre" value="{{ oFilm.film_titre }}">
+        <span>&nbsp;{{ oFilm.erreurs.film_titre }}</span>
+
+        <label>Année de sortie</label>
+        <input name="film_annee_sortie" type="number" value="{{ oFilm.film_annee_sortie | default('now' | date('Y')) }}"
+            min="{{ constant('Film::ANNEE_PREMIER_FILM') }}" max="{{ 'now' | date('Y') }}">
+        <span>&nbsp;{{ oFilm.erreurs.film_annee_sortie }}</span>
+
+        <label>Durée (minutes)</label>
+        <input name="film_duree" type="number" value="{{ oFilm.film_duree }}"
+            min="{{ constant('Film::DUREE_MIN') }}" max="{{ constant('Film::DUREE_MAX') }}">
+        <span>&nbsp;{{ oFilm.erreurs.film_duree }}</span>
+
+        <label>Genre</label>
+        <select name="film_genre_id">
+        {% for oGenre in oGenres %}
+            <option value="{{ oGenre.genre_id }}" {{ oFilm.film_genre_id == oGenre.genre_id ? 'selected' : '' }}>{{ oGenre.genre_nom }}</option>
+        {% endfor %}
+        </select>
+        <span>&nbsp;{{ oFilm.erreurs.film_genre_id }}</span>
+
+        <label>Résumé</label>
+        <textarea name="film_resume" rows="3">{{ oFilm.film_resume }}</textarea>
+        <span>&nbsp;{{ oFilm.erreurs.film_resume }}</span>
+
+        <label>Statut</label>
+        <select name="film_statut">
+            <option value="{{ constant('Film::STATUT_INVISIBLE') }}" {{ oFilm.film_statut == constant('Film::STATUT_INVISIBLE') ? 'selected' : '' }}>Invisible</option>
+            <option value="{{ constant('Film::STATUT_VISIBLE') }}"   {{ oFilm.film_statut == constant('Film::STATUT_VISIBLE')   ? 'selected' : '' }}>Visible  </option>
+            <option value="{{ constant('Film::STATUT_ARCHIVE') }}"   {{ oFilm.film_statut == constant('Film::STATUT_ARCHIVE')   ? 'selected' : '' }}>Archivé  </option>
+        </select>
+        <span>&nbsp;{{ oFilm.erreurs.film_statut }}</span>
+
+        <label>Image au format jpg</label>
+        <img src=" {{ oFilm.film_affiche | default ('<img src="medias/affiches/film-test.jpg">') }}">
+        <input name="film_affiche" type="file">
+        <span>&nbsp;{{ oFilm.erreurs.film_affiche }}</span>
+
+        <input type="hidden" name="film_id" value="{{ oFilm.film_id }}">
+
+        <input type="submit" value="Envoyer">
+    </form>
+</section>

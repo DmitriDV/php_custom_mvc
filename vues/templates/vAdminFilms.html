@@ -1,0 +1,45 @@
+<!-- script pour modifier le contenu de la barre d'adresse (avec l'uri "admin?entite=film") qui devient en phase avec le contenu du template affiché -->
+<script>history.pushState({}, '', 'admin?entite=film')</script>
+
+<section>
+    <h1>{{ titre|upper }}</h1>
+    <a href="admin?entite=film&action=a">Ajouter un film</a>
+    <p class="messageRetourAction {{ classRetour }}">{{ messageRetourAction }}&nbsp;</p>   
+    <div class="g films">
+        <div class="t">Id</div>
+        <div class="t">Titre</div>
+        <div class="t">Sortie</div>
+        <div class="t">Durée</div>
+        <div class="t">Genre</div>
+        <div class="t">Statut</div>
+        <div class="t">Nb Real.</div>
+        <div class="t">Nb Act.</div>
+        <div class="t">Nb Pays</div>
+        <div class="t">Actions</div>
+    {% for oFilm in oFilms %}
+        <div class="l">
+        <div class="c dr">{{ oFilm.film_id }}</div>
+        <div class="c   ">{{ oFilm.film_titre }}</div>
+        <div class="c mi">{{ oFilm.film_annee_sortie }}</div>
+        <div class="c dr">{{ oFilm.film_duree }}</div>
+        <div class="c   ">{{ oFilm.genre_nom }}</div>
+        <div class="c   ">
+            {% if     oFilm.film_statut is constant('Film::STATUT_INVISIBLE') %} Invisible
+            {% elseif oFilm.film_statut is constant('Film::STATUT_VISIBLE') %}   Visible
+            {% elseif oFilm.film_statut is constant('Film::STATUT_ARCHIVE') %}   Archivé
+            {% endif %}
+        </div>
+        <div class="c dr">{{ oFilm.nb_realisateurs }}</div>
+        <div class="c dr">{{ oFilm.nb_acteurs }}</div>
+        <div class="c dr">{{ oFilm.nb_pays }}</div>
+        <div class="c   ">
+            <a href="admin?entite=film&action=m&film_id={{ oFilm.film_id }}">modifier</a>
+            {% if not oFilm.nb_realisateurs and not oFilm.nb_acteurs and not oFilm.nb_pays %}
+            <span class="confirmerS" data-href="admin?entite=film&action=s&film_id={{ oFilm.film_id }}">supprimer</span>
+            {% endif %}
+        </div>
+        </div>
+    {% endfor %} 
+    </div>
+</section>
+{{ include("modaleSuppression.html") }}
